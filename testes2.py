@@ -1,6 +1,4 @@
-from ilu.database import db_connection, db_gira, db_meteo
 from datetime import datetime
-from ilu import query
 from datetime import timedelta
 import pandas
 import matplotlib.pyplot as plt
@@ -10,24 +8,6 @@ import seaborn as sns
 import scipy.optimize as opt
 import scipy.stats as st
 
-data_populated = True
-
-if __name__ == '__main__':
-    db = db_connection.Database()
-
-####get weather data from station 579
-    if not(data_populated):
-        db_meteo.MeteoDataManager(db).repopulate_database()
-    #Retrieve WEATHER dataframes (one per station)
-    '''meteo_dfs, names_meteo = query.retrieve_data(db, "meteo",
-        idate=datetime(2019,1,1),
-        fdate=datetime(2019,2,28),
-        dias=[[1,2,3,4,5,6,7]],
-        estacoes=[[579]],
-        minutos=None, #if None does not aggregate
-        atributos=None) #if None gets all attributes
-
-    meteo_dfs[0].to_csv(r'meteo.csv')'''
 
 ####get data from gira corrected
     girafev=pandas.read_csv('gira.csv')
